@@ -1,13 +1,10 @@
 var list;
-var selected_vineyards = new Set();
+var selected_vineyards = {};
 ymaps.ready(init);
 function unselect(item) {
-    let text = item.parentElement.getElementsByTagName("span")[0].innerText;
-    console.log([text]);
-    console.log(selected_vineyards.has(text));
-    console.log(selected_vineyards);
-    selected_vineyards.delete(text);
-    console.log(selected_vineyards.has(text));
+    let text = item.getAttribute('id');
+    console.log(text);
+    delete selected_vineyards[text];
     item.parentElement.remove();
 }
 
@@ -26,15 +23,13 @@ function make_list(list) {
 
     listContainer.appendChild(listElement);
     console.log(numberOfListItems);
-    const iterator = list[Symbol.iterator]();
-    for (i = 0; i < numberOfListItems; ++i) {
+    for (const [key, value] of Object.entries(list)) {
         // Create an item for each one
         listItem = document.createElement('li');
+        listItem.setAttribute("id", key);
 
         // Add the item text
-        let item = iterator.next().value;
-        console.log(item);
-        listItem.innerHTML = "<span>" + item + '</span> <a role="button" tabindex="0"  onclick="unselect(this)" class="cross-btn">&#10799;</a> ';
+        listItem.innerHTML = "<span>(" + key + ') ' + value + '</span> <a role="button" tabindex="0"  onclick="unselect(this)" class="cross-btn">&#10799;</a> ';
 
         // Add listItem to the listElement
         listElement.appendChild(listItem);
@@ -43,12 +38,13 @@ function make_list(list) {
 
 function placemark_event(e) {
     var vineyard = e.get("target").properties.get("iconContent");
-    if (selected_vineyards.has(vineyard)) {
-        selected_vineyards.delete(vineyard)
+    var vineyard_name = e.get("target").properties.get("hintContent");
+    if (vineyard in selected_vineyards) {
+        delete selected_vineyards.pop[vineyard]
     } else {
-        selected_vineyards.add(vineyard)
+        selected_vineyards[vineyard] = vineyard_name;
     }
-    console.log(selected_vineyards);
+
     let list = document.getElementById("selected_vineyards_list");
     list.innerHTML = '';
     make_list(selected_vineyards);
@@ -86,8 +82,8 @@ function init() {
         var placemark = new ymaps.Placemark(
             [list[i].x, list[i].y],
             {
-                balloonContent: '',
-                iconContent: list[i].id.toString()
+                iconContent: list[i].id.toString(),
+                hintContent: list[i].name
             },
             {
                 preset: "islands#yellowStretchyIcon",
