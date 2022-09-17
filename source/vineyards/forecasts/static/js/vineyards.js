@@ -2,8 +2,8 @@ var list;
 var selected_vineyards = {};
 ymaps.ready(init);
 function unselect(item) {
-    let text = item.getAttribute('id');
-    console.log(text);
+    let text = item.parentElement.getAttribute('id');
+    console.log('text' + text);
     delete selected_vineyards[text];
     item.parentElement.remove();
 }
@@ -22,7 +22,7 @@ function make_list(list) {
     // Add it to the page
 
     listContainer.appendChild(listElement);
-    console.log(numberOfListItems);
+
     for (const [key, value] of Object.entries(list)) {
         // Create an item for each one
         listItem = document.createElement('li');
@@ -39,8 +39,9 @@ function make_list(list) {
 function placemark_event(e) {
     var vineyard = e.get("target").properties.get("iconContent");
     var vineyard_name = e.get("target").properties.get("hintContent");
+    console.log(vineyard + vineyard_name);
     if (vineyard in selected_vineyards) {
-        delete selected_vineyards.pop[vineyard]
+        delete selected_vineyards[vineyard]
     } else {
         selected_vineyards[vineyard] = vineyard_name;
     }
@@ -56,7 +57,6 @@ $.ajax({
     dataType: "json",
     data: {},
     success: function(result){
-        console.log(result);
         var json = result;
 
         if (!result['success']) {
@@ -78,7 +78,6 @@ function init() {
     });
 
     for (i = 0; i < list.length; i++) {
-        console.log(list[i]);
         var placemark = new ymaps.Placemark(
             [list[i].x, list[i].y],
             {
