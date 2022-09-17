@@ -1,0 +1,37 @@
+body {
+  background-color: #383735;
+}
+
+h1 {
+  color: #d0c1a2;
+  font-family: Corporate A Pro Light;
+  font-size: 60pt;
+  word-spacing: 80pt;
+}
+
+.menu-height {
+  height: 100px;
+}
+
+a {
+  font-size: 25pt;
+  font-family: Golos;
+  text-decoration: none;
+}
+
+a.hover:hover {
+  color: #5A751F;
+}
+
+.beige {
+  color: #d0c1a2;
+}
+
+.centre-content-quarter {
+  padding-top: 25%;
+}
+
+.centre-content-custom {
+  padding-top: 20%;
+}
+
