@@ -16,5 +16,6 @@ jobs:
           script: |
             cd ${{ secrets.PROJECT_PATH }}
             git pull ${{secrets.REPO_URL}}
+            cd ./source
             docker-compose down 
             docker-compose up --build -d
