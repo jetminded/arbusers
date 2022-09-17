@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from .models import *
 
 
 def index(request):
@@ -11,6 +12,22 @@ def index(request):
     if request.method == "GET":
         return render(request, 'index.html')
     return redirect('/error')
+
+
+def get_database(request):
+    data_list = []
+    existing_vineyards = ExistingVineyard.objects.all()
+    for v in existing_vineyards:
+        vineyard_info = {
+            "id": v.id,
+            "x": v.x,
+            "y": v.y,
+            "name": v.name
+        }
+        data_list.append(vineyard_info)
+    print(data_list)
+    return JsonResponse({'success': True, 'data': data_list})
+
 
 
 def vineyards(request):
