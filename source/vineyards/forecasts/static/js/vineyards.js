@@ -1,3 +1,4 @@
+var list;
 var selected_vineyards = new Set();
 ymaps.ready(init);
 function unselect(item) {
@@ -53,15 +54,35 @@ function placemark_event(e) {
     make_list(selected_vineyards);
 }
 
+$.ajax({
+    url: "get_database",
+    type: "GET",
+    dataType: "json",
+    data: {},
+    success: function(result){
+        console.log(result);
+        var json = result;
+
+        if (!result['success']) {
+            // сообщение об ошибке
+            alert("wow");
+        }
+        else {
+            // сообщение об успехе
+            list = json.data;
+        }
+    }
+});
+
 function init() {
     var base = [45.1969786974, 39.1890641332];
-    var list = [{id: 1, x: 45.1961480793, y: 36.8929497263}, {id: 2, x: 45.1983240531, y: 37.6262282182}, {id: 3, x: 43.3293017383, y: 36.6570520132}] // данные из БД
     var myMap = new ymaps.Map("map", {
         center: base,
-        zoom: 7
+        zoom: 8
     });
 
     for (i = 0; i < list.length; i++) {
+        console.log(list[i]);
         var placemark = new ymaps.Placemark(
             [list[i].x, list[i].y],
             {
