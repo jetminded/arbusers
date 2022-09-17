@@ -1,5 +1,6 @@
 var list;
 var selected_vineyards = {};
+var placemarks = [];
 ymaps.ready(init);
 function unselect(item) {
     let text = item.parentElement.getAttribute('id');
@@ -15,9 +16,7 @@ function make_list(list) {
         listElement = document.getElementById("selected_vineyards_list"),
 
         // Set up a loop that goes through the items in listItems one at a time
-        numberOfListItems = list.size,
-        listItem,
-        i;
+        listItem;
 
     // Add it to the page
 
@@ -78,7 +77,7 @@ function init() {
     });
 
     for (i = 0; i < list.length; i++) {
-        var placemark = new ymaps.Placemark(
+        placemarks[i] = new ymaps.Placemark(
             [list[i].x, list[i].y],
             {
                 iconContent: list[i].id.toString(),
@@ -86,6 +85,7 @@ function init() {
             },
             {
                 preset: "islands#yellowStretchyIcon",
+                visible: true,
                 // Отключаем кнопку закрытия балуна.
                 balloonCloseButton: false,
                 // Балун будем открывать и закрывать кликом по иконке метки.
@@ -93,13 +93,25 @@ function init() {
             }
         );
 
-        placemark.events.add('click', placemark_event);
+        placemarks[i].events.add('click', placemark_event);
 
-        myMap.geoObjects.add(placemark);
+        myMap.geoObjects.add(placemarks[i]);
     }
 
     document.getElementById("submit_btn").onclick = function() {
         document.getElementById("chosen_vineyards").value = JSON.stringify(selected_vineyards);
+    }
+}
+
+function filter(item) {
+    console.log("kek");
+    var grape = item.parentElement.getElementsByTagName("p")[0].innerText;
+    for (i = 0; i < list.length; i++) {
+        var visible = placemarks[i].options.get("visible");
+        console.log(visible + ' ' + item.checked);
+        if (list[i].grape == grape && visible != item.checked) {
+            placemarks[i].options.set("visible", !visible);
+        }
     }
 }
 

@@ -26,7 +26,8 @@ def get_database(request):
             "id": v.id,
             "x": v.x,
             "y": v.y,
-            "name": v.name
+            "name": v.name,
+            "grape": v.grape,
         }
         data_list.append(vineyard_info)
     print(data_list)
