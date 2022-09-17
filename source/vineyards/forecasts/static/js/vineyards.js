@@ -33,7 +33,7 @@ function make_list(list) {
         // Add the item text
         let item = iterator.next().value;
         console.log(item);
-        listItem.innerHTML = "<span>" + item + "</span> <button onclick='unselect(this)'>x</button>";
+        listItem.innerHTML = "<span>" + item + '</span> <a role="button" tabindex="0"  onclick="unselect(this)" class="cross-btn">&#10799;</a> ';
 
         // Add listItem to the listElement
         listElement.appendChild(listItem);
@@ -54,32 +54,16 @@ function placemark_event(e) {
 }
 
 function init() {
-    var base = [43.3293017383, 36.6570520132],
-        base_zone37 = {x: 310050, y: 4800050};
-    var list = [{id: 1, x: 334500, y: 5006900}, {id: 2, x: 392100, y: 5005900}] // здесь будут данные обо всех виноградниках из БД
+    var base = [45.1969786974, 39.1890641332];
+    var list = [{id: 1, x: 45.1961480793, y: 36.8929497263}, {id: 2, x: 45.1983240531, y: 37.6262282182}, {id: 3, x: 43.3293017383, y: 36.6570520132}] // данные из БД
     var myMap = new ymaps.Map("map", {
         center: base,
-        zoom: 5
+        zoom: 7
     });
 
     for (i = 0; i < list.length; i++) {
-        var right_distance = list[i].x - base_zone37.x,
-            up_distance = list[i].y - base_zone37.y;
-        var go_right = ymaps.coordSystem.geo.solveDirectProblem(
-            base,
-            [0, 1],
-            right_distance
-        ).endPoint;
-
-        var go_up = ymaps.coordSystem.geo.solveDirectProblem(
-            go_right,
-            [1, 0],
-            up_distance
-        ).endPoint;
-
-
         var placemark = new ymaps.Placemark(
-            go_up,
+            [list[i].x, list[i].y],
             {
                 balloonContent: '',
                 iconContent: list[i].id.toString()

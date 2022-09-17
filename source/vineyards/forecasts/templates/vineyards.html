@@ -5,14 +5,30 @@
     <meta charset="UTF-8">
     <title>Предсказания для виноградников</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css'%}" >
+    <link rel="stylesheet" href="{% static 'css/vineyards.css'%}" type="text/css">
     <script src="https://api-maps.yandex.ru/2.1/?apikey=b596a4d0-dc53-4561-8ecc-b1766c91c687&lang=ru_RU" type="text/javascript"> </script>
     <script src="{% static 'js/vineyards.js' %}"></script>
 </head>
 
 <body>
-<div id="map" style="width: 600px; height: 400px;"></div>
-<div id="selected_vineyards" style="width: 600px; height: 400px;">
-    <ul id="selected_vineyards_list"></ul>
-</div>
+<div class="row">
+    <div class="col-7 map-div">
+      <div style="width: 900px; height: 770px;">
+        <div id="map" style="width: 100%; height: 100%;"></div>
+      </div>
+    </div>
+    <div class="col-5">
+        <div style="margin-top: 5%; margin-bottom: 4%; margin-left: 0; margin-right: 5%;">
+            <p class="info-text">
+            Выберите одно или несколько существующих виноградных хозяйств и
+            набросьте фильтры, а на карте Краснодарского края отобразятся области с территориями,
+            близкими по природным характеристикам. </p>
+        </div>
+      <div id="selected_vineyards" style="width: 600px; height: 400px;">
+        <ul id="selected_vineyards_list"></ul>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
