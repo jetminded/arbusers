@@ -1,0 +1,36 @@
+body {
+  background-color: #383735;
+}
+
+.map-div {
+  margin: 0 0;
+  padding: 3% 3%;
+}
+
+li {
+  color: #d0c1a2;
+  font-size: 18pt;
+  font-family: Golos;
+}
+
+p {
+  color: #d0c1a2;
+  font-size: 16pt;
+  font-family: Golos;
+}
+
+a {
+  text-decoration: none;
+}
+
+.cross-btn {
+  color: white;
+  font-size: 18pt;
+  margin-left: 2px;
+}
+
+.cross-btn:hover {
+  color: red;
+  text-decoration: none;
+  box-shadow: 0 0 5px 2px red;
+}
