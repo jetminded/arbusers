@@ -13,7 +13,6 @@ f.close()
 rows = cont.split('\n')
 rows = rows[1:-1]  # delete first row with captions
 formatted = [tuple(x.split()[1:]) for x in rows]
-# formatted = [(*row, "") for row in formatted]
 print(formatted)
 
 # insert into db
