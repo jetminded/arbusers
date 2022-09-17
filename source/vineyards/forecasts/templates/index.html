@@ -7,33 +7,6 @@
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css'%}" >
     <link rel="stylesheet" href="{% static 'css/index.css'%}" type="text/css">
     <script src="{% static 'js/index.js' %}"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=b596a4d0-dc53-4561-8ecc-b1766c91c687&lang=ru_RU" type="text/javascript"> </script>
-
-    <script type="text/javascript">
-        ymaps.ready(init);
-        function init(){
-            var myMap = new ymaps.Map("map", {
-                center: [43.3293017383, 36.6570520132],
-                zoom: 5
-            });
-
-            var placemark = new ymaps.Placemark([43.3293017383, 36.6570520132], {
-                balloonContent: '<img src="http://img-fotki.yandex.ru/get/6114/82599242.2d6/0_88b97_ec425cf5_M" />',
-                iconContent: "ЧЕБОКСАРЫ"}
-            , {
-                preset: "islands#yellowStretchyIcon",
-                // Отключаем кнопку закрытия балуна.
-                balloonCloseButton: false,
-                 // Балун будем открывать и закрывать кликом по иконке метки.
-                hideIconOnBalloonOpen: false
-            });
-            myMap.geoObjects.add(placemark);
-        }
-<!--        ymaps.geocode('Domodedovo airport').then(function (res) {-->
-<!--            var end_point = ymaps.coordSystem.geo.solveDirectProblem([43.3293017383, 36.6570520132], [0, 1], 100).endPoint;-->
-<!--        });-->
-    </script>
-
 </head>
 <body>
 
@@ -72,10 +45,6 @@
     </div>
   </div>
 </div>
-
-<body>
-    <div id="map" style="width: 600px; height: 400px"></div>
-</body>
 
 </body>
 </html>
