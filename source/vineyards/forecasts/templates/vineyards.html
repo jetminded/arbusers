@@ -1,10 +1,78 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Предсказания для виноградников</title>
+    <link rel="stylesheet" href="{% static 'css/index.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css'%}" >
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=b596a4d0-dc53-4561-8ecc-b1766c91c687&lang=ru_RU" type="text/javascript"> </script>
+
+    <script type="text/javascript">
+        ymaps.ready(init);
+        function init() {
+            var base = [43.3293017383, 36.6570520132],
+            base_zone37 = {x: 310050, y: 4800050};
+            var list = [{id: 1, x: 334500, y: 5006900}] // здесь будут данные обо всех виноградниках из БД
+            var myMap = new ymaps.Map("map", {
+                center: base,
+                zoom: 5
+            });
+
+            for (i = 0; i < list.length; i++) {
+                console.log(list[i]);
+                var right_distance = list[i].x - base_zone37.x,
+                    up_distance = list[i].y - base_zone37.y;
+                console.log(right_distance);
+                console.log(up_distance);
+                var go_right = ymaps.coordSystem.geo.solveDirectProblem(
+                    base,
+                    [0, 1],
+                    right_distance
+                ).endPoint;
+
+                var go_up = ymaps.coordSystem.geo.solveDirectProblem(
+                    go_right,
+                    [1, 0],
+                    up_distance
+                ).endPoint;
+
+
+                var placemark = new ymaps.Placemark(
+                    go_up,
+                    {
+                        balloonContent: '',
+                        iconContent: list[i].id
+                    },
+                    {
+                        preset: "islands#yellowStretchyIcon",
+                        // Отключаем кнопку закрытия балуна.
+                        balloonCloseButton: false,
+                        // Балун будем открывать и закрывать кликом по иконке метки.
+                        hideIconOnBalloonOpen: false
+                    }
+                );
+                myMap.geoObjects.add(placemark);
+            }
+        }
+    </script>
+
 </head>
 <body>
-<p>vineyards</p>
+
+<div class="container">
+    <h1 class="text-center">Когда только зашел на наш сайт винограда</h1>
+    <img class="w-50 mx-auto d-block" src="{% static 'imgs/meme.png' %}" alt="photo">
+</div>
+<div class="container">
+    <h1 class="text-center">Когда нашел идеальное место для виноградника</h1>
+    <img class="w-50 mx-auto d-block" src="{% static 'imgs/meme_2.png' %}" alt="photo">
+</div>
+
+<body>
+    <div id="map" style="width: 600px; height: 400px"></div>
+</body>
+
 </body>
 </html>
