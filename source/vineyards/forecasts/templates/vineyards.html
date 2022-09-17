@@ -14,7 +14,7 @@
 <body>
 <div class="row">
     <div class="col-7 map-div">
-      <div style="width: 900px; height: 770px;">
+      <div style="width: 100%; height: 770px;">
         <div id="map" style="width: 100%; height: 100%;"></div>
       </div>
     </div>
@@ -52,6 +52,10 @@
           <p class="bigger-font"><b>Выбранные виноградники:</b></p>
         <ul id="selected_vineyards_list"></ul>
       </div>
+      <form action="" method="post">
+          <input name="chosen_vineyards" id="chosen_vineyards" type="hidden" value="">
+          <input id="submit_btn" type="submit" value="Submit">
+      </form>
     </div>
   </div>
 </body>

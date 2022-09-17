@@ -97,5 +97,9 @@ function init() {
 
         myMap.geoObjects.add(placemark);
     }
+
+    document.getElementById("submit_btn").onclick = function() {
+        document.getElementById("chosen_vineyards").value = JSON.stringify(selected_vineyards);
+    }
 }
 

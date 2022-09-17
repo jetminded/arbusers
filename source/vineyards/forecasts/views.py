@@ -1,5 +1,9 @@
+import json
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import *
 
 
@@ -29,7 +33,7 @@ def get_database(request):
     return JsonResponse({'success': True, 'data': data_list})
 
 
-
+@csrf_exempt
 def vineyards(request):
     """
         Возвращает страницу о виноградниках
@@ -38,6 +42,10 @@ def vineyards(request):
     """
     if request.method == "GET":
         return render(request, 'vineyards.html')
+    if request.method == "POST":
+        data = json.loads(request.POST.get('chosen_vineyards'))
+        # process data.keys()
+        return HttpResponse(str(data.keys()))
     return redirect('/error')
 
 
