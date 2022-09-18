@@ -21,25 +21,24 @@ def from_picture_to_map(point):
 
 
 def get_top_vineyard(desired, lands, k=3):
-    # desired = desired.drop(["x", "y"], axis=0)
-    # desired = desired.rename(columns={"x" : "y", "y": "x"})
-    # lands = lands.drop(["x", "y"], axis=1)
+    desired = desired.drop(["x", "y"], axis=0)
+    lands = lands.drop(["x", "y"], axis=1)
     desired = np.array([np.array(desired, dtype=float)])
     lands = np.array(lands, dtype=float)
     distances = cdist(desired, lands)[0]
-    closest_lands = lands[np.argpartition(distances, k)[:k]]
+    args = np.argpartition(distances, k)[:k]
+    closest_lands = lands[args]
     distances = cdist(desired, closest_lands)[0]
-    return np.argsort(distances)
+    return args[np.argsort(distances)]
 
 
-def find_closest(wineyards_x, wineyards_y, k):
+def find_closest(wineyards_y, wineyards_x, k):
     wineyards = pd.read_csv("../data.csv")
     lands = pd.read_csv("../lands.csv")
     desired_wineyards = pd.DataFrame(columns=lands.columns)
     for i in range(len(wineyards_x)):
-        s = wineyards.where(wineyards.x == wineyards_x[i]).where(wineyards.y == wineyards_y[i]).iloc[0]
+        s = wineyards[(wineyards.x == wineyards_x[i]) & (wineyards.y == wineyards_y[i])]
         desired_wineyards = desired_wineyards.append(s)
-
     des = desired_wineyards.mean()
     # print(des)
     needed_indices = get_top_vineyard(des, lands, k)

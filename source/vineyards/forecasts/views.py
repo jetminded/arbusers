@@ -49,8 +49,8 @@ def vineyards(request):
         vineyard_y = []
         for id in data.keys():
             vineyard = ExistingVineyard.objects.get(id=id)
-            vineyard_x.append(convert_coordinates(vineyard.x_abs, x_base))
-            vineyard_y.append(convert_coordinates(vineyard.y_abs, y_base))
+            vineyard_x.append(int(abs(vineyard.x_abs - x_base)/100))
+            vineyard_y.append(int(abs(y_base - vineyard.y_abs)/100))
         dict_result = find_closest(vineyard_x, vineyard_y, 10)
         center = list(zip(dict_result["x_center"], dict_result["y_center"]))
         left = list(zip(dict_result["x_left"], dict_result["y_bottom"]))
