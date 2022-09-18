@@ -3,7 +3,7 @@
 <html lang="en">
 <script>
     var selected_vineyards = JSON.parse("{{data|escapejs}}");
-    var result = JSON.parse("{{ result|escapejs }}");
+    var result = JSON.parse("{{ result|escapejs }}")['result'];
     console.log(result);
 </script>
 <head>
