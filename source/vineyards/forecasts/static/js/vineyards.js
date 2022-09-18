@@ -109,10 +109,10 @@ function init() {
         var result_placemark = new ymaps.Placemark(
             result["center"][i],
             {
-                iconContent: list[i].id.toString(),
+                iconContent: (i+1).toString(),
             },
             {
-                preset: "islands#dotIcon",
+                preset: "islands#blueStretchyIcon",
                 visible: true,
                 // Отключаем кнопку закрытия балуна.
                 balloonCloseButton: false,
