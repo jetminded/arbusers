@@ -22,7 +22,7 @@ def from_picture_to_map(point):
 
 def get_top_vineyard(desired, lands, k=3):
     # desired = desired.drop(["x", "y"], axis=0)
-    desired = desired.rename(columns={"x" : "y", "y": "x"})
+    # desired = desired.rename(columns={"x" : "y", "y": "x"})
     # lands = lands.drop(["x", "y"], axis=1)
     desired = np.array([np.array(desired, dtype=float)])
     lands = np.array(lands, dtype=float)
