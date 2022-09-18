@@ -13,6 +13,15 @@ h1 {
   height: 100px;
 }
 
+.arrow:hover {
+  background-image: url('/static/imgs/green_arrow.png');
+}
+
+.arrow {
+  background-image: url('/static/imgs/arrow.png');
+  transition: 1s;
+}
+
 a {
   font-size: 25pt;
   font-family: Golos;
