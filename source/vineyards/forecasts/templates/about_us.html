@@ -3,11 +3,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>О нас</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css'%}" >
     <link rel="stylesheet" href="{% static 'css/about_us.css'%}" type="text/css">
 </head>
 <body>
+<nav class="nav" style="background-color: #d0c1a2;">
+  <div style="background-color: #383735; width: 4%;">
+      <img src="{% static 'imgs/grape.png' %}" alt="photo" style="width: 60px; height: 60px;">
+  </div>
+  <a class="nav-link active link" href="/">Главная</a>
+  <a class="nav-link link" href="/vineyards">Предсказания</a>
+</nav>
 <div class="row">
   <div class="card mb-3" style="background-color: #d0c1a2; max-width: 485px; margin-top: 3%; margin-left: 5%;">
     <div class="row g-0">
