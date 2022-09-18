@@ -42,7 +42,7 @@ def vineyards(request):
         :return: vineyards.html
     """
     if request.method == "GET":
-        return render(request, 'vineyards.html', {'data': json.dumps({}), 'result': json.dumps({'result': []})})
+        return render(request, 'vineyards.html', {'data': json.dumps({}), 'result': json.dumps({'center': [], 'left': [], 'right': []})})
     if request.method == "POST":
         data = json.loads(request.POST.get('chosen_vineyards'))
         vineyard_x = []
@@ -51,11 +51,16 @@ def vineyards(request):
             vineyard = ExistingVineyard.objects.get(id=id)
             vineyard_x.append(convert_coordinates(vineyard.x_abs, x_base))
             vineyard_y.append(convert_coordinates(vineyard.y_abs, y_base))
-        result = list(zip(*find_closest(vineyard_x, vineyard_y, 20)))
-        print(result)
-        result = [from_picture_to_map(item) for item in result]
+        dict_result = find_closest(vineyard_x, vineyard_y, 10)
+        center = list(zip(dict_result["x_center"], dict_result["y_center"]))
+        left = list(zip(dict_result["x_left"], dict_result["y_bottom"]))
+        right = list(zip(dict_result["x_right"], dict_result["y_top"]))
+
+        center = [from_picture_to_map(item) for item in center]
+        left = [from_picture_to_map(item) for item in left]
+        right = [from_picture_to_map(item) for item in right]
         # process data.keys()
-        return render(request, 'vineyards.html', {'data': json.dumps(data), 'result': json.dumps({'result': result})})
+        return render(request, 'vineyards.html', {'data': json.dumps(data), 'result': json.dumps({'center': center, 'left': left, 'right': right})})
     return redirect('/error')
 
 

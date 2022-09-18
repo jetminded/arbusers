@@ -99,16 +99,20 @@ function init() {
 
     make_list(selected_vineyards);
 
-    for (i = 0; i < result.length; i++) {
+    for (i = 0; i < result["center"].length; i++) {
         console.log("lol");
-        result_placemark = new ymaps.Placemark(
-            [result[i][0], result[i][1]],
+        var myRectangle = new ymaps.Rectangle([
+           result["left"][i],
+           result["right"][i]
+        ]);
+
+        var result_placemark = new ymaps.Placemark(
+            result["center"][i],
             {
-                iconContent: "Result icon",
-                hintContent: "Result name"
+                iconContent: list[i].id.toString(),
             },
             {
-                preset: "islands#blueStretchyIcon",
+                preset: "islands#dotIcon",
                 visible: true,
                 // Отключаем кнопку закрытия балуна.
                 balloonCloseButton: false,
@@ -117,6 +121,7 @@ function init() {
             }
         );
 
+        myMap.geoObjects.add(myRectangle);
         myMap.geoObjects.add(result_placemark);
     }
 
