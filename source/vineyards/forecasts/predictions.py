@@ -1,6 +1,22 @@
 import numpy as np
 import pandas as pd
 from scipy.spatial.distance import cdist
+from pyproj import Proj, transform
+
+x_base = 310050
+y_base = 4800050
+
+
+def convert_coordinates(x, base):
+    return (x - base) / 100
+
+
+def from_picture_to_map(point):
+    inProj = Proj("+init=EPSG:32637", preserve_units=True)
+    outProj = Proj("+init=EPSG:4326")  # WGS84 in degrees and not  in meters)
+    # swap x,y as mkennedy says
+    x1, y1 = point[0] + x_base, point[1] + y_base
+    return transform(inProj, outProj, x1, y1)
 
 
 def get_top_vineyard(desired, lands, k=3):
@@ -13,8 +29,8 @@ def get_top_vineyard(desired, lands, k=3):
 
 
 def find_closest(wineyards_x, wineyards_y, k):
-    wineyards = pd.read_csv("data.csv")
-    lands = pd.read_csv("lands.csv")
+    wineyards = pd.read_csv("../data.csv")
+    lands = pd.read_csv("../lands.csv")
     desired_wineyards = pd.DataFrame(columns=lands.columns)
     for i in range(len(wineyards_x)):
         s = wineyards.where(wineyards.x == wineyards_x[i]).where(wineyards.y == wineyards_y[i]).iloc[0]

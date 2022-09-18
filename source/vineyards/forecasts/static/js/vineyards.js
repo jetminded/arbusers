@@ -3,7 +3,6 @@ var placemarks = [];
 ymaps.ready(init);
 function unselect(item) {
     let text = item.parentElement.getAttribute('id');
-    console.log(parseInt(text))
     placemarks[parseInt(text) - 1].options.set("preset", "islands#yellowStretchyIcon");
     delete selected_vineyards[text];
     item.parentElement.remove();
@@ -78,7 +77,6 @@ function init() {
     });
 
     for (i = 0; i < list.length; i++) {
-        console.log(i + ' ' + (i in selected_vineyards) + ' ' + ((i in selected_vineyards) ? "islands#redStretchyIcon" : "islands#yellowStretchyIcon"));
         placemarks[i] = new ymaps.Placemark(
             [list[i].x, list[i].y],
             {
@@ -108,11 +106,9 @@ function init() {
 }
 
 function filter(item) {
-    console.log("kek");
     var grape = item.parentElement.getElementsByTagName("p")[0].innerText;
     for (i = 0; i < list.length; i++) {
         var visible = placemarks[i].options.get("visible");
-        console.log(visible + ' ' + item.checked);
         if (list[i].grape == grape && visible != item.checked) {
             placemarks[i].options.set("visible", !visible);
         }
