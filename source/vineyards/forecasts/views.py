@@ -5,7 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import *
-
+from predictions import find_closest
 
 def index(request):
     """
@@ -43,8 +43,16 @@ def vineyards(request):
     """
     if request.method == "GET":
         return render(request, 'vineyards.html')
+
     if request.method == "POST":
         data = json.loads(request.POST.get('chosen_vineyards'))
+        vineyard_x = []
+        vineyard_y = []
+        for id in data.keys():
+            vineyard = ExistingVineyard.objects.get(id=id)
+            vineyard_x.append(vineyard.x)
+            vineyard_y.append(vineyard.y)
+            result = find_closest(vineyard_x, vineyard_y, len(vineyard))
         # process data.keys()
         return HttpResponse(str(data.keys()))
     return redirect('/error')

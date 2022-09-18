@@ -2,3 +2,9 @@ asgiref==3.5.2
 backports.zoneinfo==0.2.1
 Django==4.1.1
 sqlparse==0.4.2
+numpy==1.23.3
+pandas==1.4.4
+python-dateutil==2.8.2
+pytz==2022.2.1
+scipy==1.9.1
+six==1.16.0
