@@ -1,5 +1,7 @@
 var list;
+var wineries;
 var placemarks = [];
+var wineries_placemarks = [];
 ymaps.ready(init);
 function unselect(item) {
     let text = item.parentElement.getAttribute('id');
@@ -68,6 +70,25 @@ $.ajax({
     }
 });
 
+$.ajax({
+    url: "get_database_winery",
+    type: "GET",
+    dataType: "json",
+    data: {},
+    success: function(result){
+        var json = result;
+
+        if (!result['success']) {
+            // сообщение об ошибке
+            alert("wow");
+        }
+        else {
+            // сообщение об успехе
+            wineries = json.data;
+        }
+    }
+});
+
 function init() {
     var base = [45.1969786974, 39.1890641332];
     var myMap = new ymaps.Map("map", {
@@ -95,6 +116,26 @@ function init() {
         placemarks[i].events.add('click', placemark_event);
 
         myMap.geoObjects.add(placemarks[i]);
+    }
+
+    for (i = 0; i < wineries.length; i++) {
+        wineries_placemarks[i] = new ymaps.Placemark(
+            [wineries[i].x, wineries[i].y],
+            {
+                iconContent: wineries[i].id.toString(),
+                hintContent: wineries[i].name
+            },
+            {
+                preset: "islands#greenStretchyIcon",
+                visible: true,
+                // Отключаем кнопку закрытия балуна.
+                balloonCloseButton: false,
+                // Балун будем открывать и закрывать кликом по иконке метки.
+                hideIconOnBalloonOpen: false
+            }
+        );
+
+        myMap.geoObjects.add(wineries_placemarks[i]);
     }
 
     make_list(selected_vineyards);
@@ -136,6 +177,15 @@ function filter(item) {
         var visible = placemarks[i].options.get("visible");
         if (list[i].grape == grape && visible != item.checked) {
             placemarks[i].options.set("visible", !visible);
+        }
+    }
+}
+
+function filter_wineries(item) {
+    for (i = 0; i < wineries.length; i++) {
+        var visible = wineries_placemarks[i].options.get("visible");
+        if (visible !== item.checked) {
+            wineries_placemarks[i].options.set("visible", !visible);
         }
     }
 }
