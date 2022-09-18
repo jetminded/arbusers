@@ -42,8 +42,7 @@ def vineyards(request):
         :return: vineyards.html
     """
     if request.method == "GET":
-        return render(request, 'vineyards.html')
-
+        return render(request, 'vineyards.html', {'data': json.dumps({})})
     if request.method == "POST":
         data = json.loads(request.POST.get('chosen_vineyards'))
         vineyard_x = []
@@ -54,7 +53,7 @@ def vineyards(request):
             vineyard_y.append(vineyard.y)
             result = find_closest(vineyard_x, vineyard_y, len(vineyard))
         # process data.keys()
-        return HttpResponse(str(data.keys()))
+        return render(request, 'vineyards.html', {'data': json.dumps(data)})
     return redirect('/error')
 
 
