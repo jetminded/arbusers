@@ -1,0 +1,21 @@
+body {
+  background-color: #383735;
+}
+
+h5 {
+  font-family: Corporate A Pro Light;
+}
+
+p {
+  font-family: Golos;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+  font-family: Corporate A Pro Light;
+}
+
+.link:hover {
+  color: #5A751F;
+}

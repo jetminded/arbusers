@@ -1,10 +1,114 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>О нас</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css'%}" >
+    <link rel="stylesheet" href="{% static 'css/about_us.css'%}" type="text/css">
 </head>
 <body>
-<p>HEY</p>
+<nav class="nav" style="background-color: #d0c1a2;">
+  <div style="background-color: #383735; width: 4%;">
+      <img src="{% static 'imgs/grape.png' %}" alt="photo" style="width: 60px; height: 60px;">
+  </div>
+  <a class="nav-link active link" href="/">Главная</a>
+  <a class="nav-link link" href="/vineyards">Предсказания</a>
+</nav>
+<div class="row">
+  <div class="card mb-3" style="background-color: #d0c1a2; max-width: 485px; margin-top: 3%; margin-left: 5%;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'imgs/rectangular_Kolya.jpg' %}" class="img-fluid rounded-start" alt="Kolya">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><b>Спицын Николай</b></h5>
+          <p class="card-text">Капитан команды, аналитик данных, дизайнер</p>
+          <p class="card-text">Студент 3 курса МФТИ, ФПМИ</p>
+          <p class="card-text"><small class="text-muted">
+            <a style="color: #5A751F">spitsyn.na@phystech.edu</a></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="background-color: #d0c1a2; max-width: 485px; margin-top: 3%; margin-left: 3%;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'imgs/rectangular_Feoktistov.jpg' %}" class="img-fluid rounded-start" alt="DimaF">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><b>Феоктистов Дима</b></h5>
+          <p class="card-text">Главный аналитик данных, гениратор идей</p>
+          <p class="card-text">Студент 3 курса МГУ, факультет ВМК</p>
+          <p class="card-text"><small class="text-muted">
+            <a style="color: #5A751F">feoktistovdd@my.msu.ru</a></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="card mb-3" style="background-color: #d0c1a2; max-width: 485px; margin-top: 3%; margin-left: 3%; margin-right: 3%;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'imgs/rectangular_Polina.jpg' %}" class="img-fluid rounded-start" alt="Polina">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><b>Чубенко Полина</b></h5>
+          <p class="card-text">Backend разработчик, главный frontend разработчик</p>
+          <p class="card-text">Студентка 3 курса МФТИ, ФПМИ</p>
+          <p class="card-text"><small class="text-muted">
+            <a style="color: #5A751F">chubenko.pn@physctech.edu</a></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="row">
+  <div class="card mb-3" style="background-color: #d0c1a2; max-width: 485px; margin-top: 3%; margin-left: 5%;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'imgs/rectangular_Savichev.jpg' %}" class="img-fluid rounded-start" alt="DimaS">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><b>Савичев Дмитрий</b></h5>
+          <p class="card-text">Backend разработчик, frontend разработчик</p>
+          <p class="card-text">Студент 3 курса МФТИ, ФПМИ</p>
+          <p class="card-text"><small class="text-muted">
+            <a style="color: #5A751F">savichev.da@phystech.edu</a></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="background-color: #d0c1a2; max-width: 485px; margin-top: 3%; margin-left: 3%;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'imgs/rectangular_Sbrodov.jpg' %}" class="img-fluid rounded-start" alt="Egor">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><b>Сбродов Егор</b></h5>
+          <p class="card-text">Backend разработчик, DevOps разработчик</p>
+          <p class="card-text">Студент 3 курса МФТИ, ФПМИ</p>
+          <p class="card-text"><small class="text-muted">
+            <a style="color: #5A751F">sbrodov.ea@phystech.edu</a></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
 </body>
 </html>
