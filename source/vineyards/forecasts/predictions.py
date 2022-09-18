@@ -16,7 +16,8 @@ def from_picture_to_map(point):
     outProj = Proj("+init=EPSG:4326")  # WGS84 in degrees and not  in meters)
     # swap x,y as mkennedy says
     x1, y1 = point[0] + x_base, point[1] + y_base
-    return transform(inProj, outProj, x1, y1)
+    coords = transform(inProj, outProj, x1, y1)
+    return coords[1], coords[0]
 
 
 def get_top_vineyard(desired, lands, k=3):

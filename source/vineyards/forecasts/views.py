@@ -30,7 +30,7 @@ def get_database(request):
             "grape": v.grape,
         }
         data_list.append(vineyard_info)
-    print(data_list)
+
     return JsonResponse({'success': True, 'data': data_list})
 
 
@@ -42,7 +42,7 @@ def vineyards(request):
         :return: vineyards.html
     """
     if request.method == "GET":
-        return render(request, 'vineyards.html', {'data': json.dumps({})})
+        return render(request, 'vineyards.html', {'data': json.dumps({}), 'result': json.dumps({'result': []})})
     if request.method == "POST":
         data = json.loads(request.POST.get('chosen_vineyards'))
         vineyard_x = []
@@ -52,8 +52,8 @@ def vineyards(request):
             vineyard_x.append(convert_coordinates(vineyard.x_abs, x_base))
             vineyard_y.append(convert_coordinates(vineyard.y_abs, y_base))
         result = list(zip(*find_closest(vineyard_x, vineyard_y, 20)))
-        result = [from_picture_to_map(item) for item in result]
         print(result)
+        result = [from_picture_to_map(item) for item in result]
         # process data.keys()
         return render(request, 'vineyards.html', {'data': json.dumps(data), 'result': json.dumps({'result': result})})
     return redirect('/error')

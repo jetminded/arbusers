@@ -100,6 +100,27 @@ function init() {
 
     make_list(selected_vineyards);
 
+    for (i = 0; i < result.length; i++) {
+        console.log("lol");
+        result_placemark = new ymaps.Placemark(
+            [result[i][0], result[i][1]],
+            {
+                iconContent: "Result icon",
+                hintContent: "Result name"
+            },
+            {
+                preset: "islands#blueStretchyIcon",
+                visible: true,
+                // Отключаем кнопку закрытия балуна.
+                balloonCloseButton: false,
+                // Балун будем открывать и закрывать кликом по иконке метки.
+                hideIconOnBalloonOpen: false
+            }
+        );
+
+        myMap.geoObjects.add(result_placemark);
+    }
+
     document.getElementById("submit_btn").onclick = function() {
         document.getElementById("chosen_vineyards").value = JSON.stringify(selected_vineyards);
     }
