@@ -17,9 +17,6 @@ function make_list(list) {
         // Set up a loop that goes through the items in listItems one at a time
         listItem;
 
-    // Add it to the page
-
-    listContainer.appendChild(listElement);
 
     for (const [key, value] of Object.entries(list)) {
         // Create an item for each one
@@ -107,7 +104,23 @@ function init() {
            result["right"][i]
         ]);
 
+        var result_placemark = new ymaps.Placemark(
+            result["center"][i],
+            {
+                iconContent: list[i].id.toString(),
+            },
+            {
+                preset: "islands#dotIcon",
+                visible: true,
+                // Отключаем кнопку закрытия балуна.
+                balloonCloseButton: false,
+                // Балун будем открывать и закрывать кликом по иконке метки.
+                hideIconOnBalloonOpen: false
+            }
+        );
+
         myMap.geoObjects.add(myRectangle);
+        myMap.geoObjects.add(result_placemark);
     }
 
     document.getElementById("submit_btn").onclick = function() {
