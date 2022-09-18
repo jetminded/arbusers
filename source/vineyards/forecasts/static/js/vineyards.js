@@ -17,7 +17,9 @@ function make_list(list) {
         // Set up a loop that goes through the items in listItems one at a time
         listItem;
 
+    // Add it to the page
 
+//    listContainer.appendChild(listElement);
     for (const [key, value] of Object.entries(list)) {
         // Create an item for each one
         listItem = document.createElement('li');
@@ -107,10 +109,10 @@ function init() {
         var result_placemark = new ymaps.Placemark(
             result["center"][i],
             {
-                iconContent: list[i].id.toString(),
+                iconContent: (i+1).toString(),
             },
             {
-                preset: "islands#dotIcon",
+                preset: "islands#blueStretchyIcon",
                 visible: true,
                 // Отключаем кнопку закрытия балуна.
                 balloonCloseButton: false,

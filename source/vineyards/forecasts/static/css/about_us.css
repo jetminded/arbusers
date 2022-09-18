@@ -10,12 +10,22 @@ p {
   font-family: Golos;
 }
 
+
 .link {
-  color: black;
+  color: #fffdd0;
   text-decoration: none;
-  font-family: Corporate A Pro Light;
+  font-family: Golos;
+  font-size: 30px;
 }
 
 .link:hover {
+  color: #5A751F;
+}
+
+.link:active {
+  color: #5A751F;
+}
+
+.link:focus {
   color: #5A751F;
 }
