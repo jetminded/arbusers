@@ -4,7 +4,8 @@ var placemarks = [];
 ymaps.ready(init);
 function unselect(item) {
     let text = item.parentElement.getAttribute('id');
-    console.log('text' + text);
+    console.log(parseInt(text))
+    placemarks[parseInt(text) - 1].options.set("preset", "islands#yellowStretchyIcon");
     delete selected_vineyards[text];
     item.parentElement.remove();
 }
@@ -38,10 +39,11 @@ function make_list(list) {
 function placemark_event(e) {
     var vineyard = e.get("target").properties.get("iconContent");
     var vineyard_name = e.get("target").properties.get("hintContent");
-    console.log(vineyard + vineyard_name);
     if (vineyard in selected_vineyards) {
+        e.get("target").options.set("preset", "islands#yellowStretchyIcon");
         delete selected_vineyards[vineyard]
     } else {
+        e.get("target").options.set("preset", "islands#redStretchyIcon");
         selected_vineyards[vineyard] = vineyard_name;
     }
 
