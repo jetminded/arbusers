@@ -27,7 +27,22 @@ def get_database(request):
             "x": v.x,
             "y": v.y,
             "name": v.name,
-            "grape": v.grape,
+            "grape": v.grape
+        }
+        data_list.append(vineyard_info)
+
+    return JsonResponse({'success': True, 'data': data_list})
+
+
+def get_database_winery(request):
+    data_list = []
+    wineries = Winery.objects.all()
+    for v in wineries:
+        vineyard_info = {
+            "id": v.id,
+            "x": v.x,
+            "y": v.y,
+            "name": v.name
         }
         data_list.append(vineyard_info)
 
