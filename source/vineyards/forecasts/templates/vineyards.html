@@ -17,10 +17,8 @@
 </head>
 
 <body>
-<nav class="nav" style="background-color: #d0c1a2;">
-  <div style="background-color: #383735; width: 4%;">
-      <img src="{% static 'imgs/grape.png' %}" alt="photo" style="width: 60px; height: 60px;">
-  </div>
+<nav class="nav" style="background-color: #22211f; height: 65px; padding-left: 5%;">
+      <img src="{% static 'imgs/grape.png' %}" alt="photo" style="width: 60px; height: 60px; margin-right: 3%;">
   <a class="nav-link active link" href="/">Главная</a>
   <a class="nav-link link" href="/about_us">О нас</a>
 </nav>
@@ -62,7 +60,9 @@
         </div>
       <div id="selected_vineyards" style="width: 600px; height: 400px;">
           <p class="bigger-font"><b>Выбранные виноградники:</b></p>
-        <ul id="selected_vineyards_list"></ul>
+            <div class="bar_container">
+                <ul id="selected_vineyards_list"></ul>
+            </div>
       </div>
       <form action="" method="post">
           <input name="chosen_vineyards" id="chosen_vineyards" type="hidden" value="">

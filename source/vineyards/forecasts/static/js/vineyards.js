@@ -17,7 +17,9 @@ function make_list(list) {
         // Set up a loop that goes through the items in listItems one at a time
         listItem;
 
+    // Add it to the page
 
+//    listContainer.appendChild(listElement);
     for (const [key, value] of Object.entries(list)) {
         // Create an item for each one
         listItem = document.createElement('li');
