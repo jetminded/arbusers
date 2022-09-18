@@ -9,4 +9,5 @@ urlpatterns = [
     path('about_us/', about_us, name='about_us'),
     path('error/', error, name='error'),
     path('vineyards/get_database/', get_database, name='get_database'),
+    path('vineyards/get_database_winery/', get_database_winery, name='get_database_winery'),
 ]
