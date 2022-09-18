@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/git,linux,macos,windows,django,python,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=git,linux,macos,windows,django,python,pycharm
 
+*0001_initial.py
+
 .idea/
 
 ### Django ###
