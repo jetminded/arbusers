@@ -1,6 +1,9 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+<script>
+    var selected_vineyards = JSON.parse("{{data|escapejs}}");
+</script>
 <head>
     <meta charset="UTF-8">
     <title>Предсказания для виноградников</title>
