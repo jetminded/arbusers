@@ -42,11 +42,11 @@ def vineyards(request):
         :return: vineyards.html
     """
     if request.method == "GET":
-        return render(request, 'vineyards.html')
+        return render(request, 'vineyards.html', {'data': json.dumps({})})
     if request.method == "POST":
         data = json.loads(request.POST.get('chosen_vineyards'))
         # process data.keys()
-        return HttpResponse(str(data.keys()))
+        return render(request, 'vineyards.html', {'data': json.dumps(data)})
     return redirect('/error')
 
 

@@ -1,5 +1,4 @@
 var list;
-var selected_vineyards = {};
 var placemarks = [];
 ymaps.ready(init);
 function unselect(item) {
@@ -79,6 +78,7 @@ function init() {
     });
 
     for (i = 0; i < list.length; i++) {
+        console.log(i + ' ' + (i in selected_vineyards) + ' ' + ((i in selected_vineyards) ? "islands#redStretchyIcon" : "islands#yellowStretchyIcon"));
         placemarks[i] = new ymaps.Placemark(
             [list[i].x, list[i].y],
             {
@@ -86,7 +86,7 @@ function init() {
                 hintContent: list[i].name
             },
             {
-                preset: "islands#yellowStretchyIcon",
+                preset: ((i + 1 in selected_vineyards) ? "islands#redStretchyIcon" : "islands#yellowStretchyIcon"),
                 visible: true,
                 // Отключаем кнопку закрытия балуна.
                 balloonCloseButton: false,
@@ -99,6 +99,8 @@ function init() {
 
         myMap.geoObjects.add(placemarks[i]);
     }
+
+    make_list(selected_vineyards);
 
     document.getElementById("submit_btn").onclick = function() {
         document.getElementById("chosen_vineyards").value = JSON.stringify(selected_vineyards);
