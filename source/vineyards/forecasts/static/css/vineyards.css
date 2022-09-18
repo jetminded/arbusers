@@ -59,13 +59,55 @@ a {
 }
 
 .link {
-  color: black;
+  color: #fffdd0;
   text-decoration: none;
-  font-family: Corporate A Pro Light;
+  font-family: Golos;
+  font-size: 30px;
 }
 
 .link:hover {
   color: #5A751F;
+}
+
+.link:active {
+  color: #5A751F;
+}
+
+.link:focus {
+  color: #5A751F;
+}
+
+:root {
+  --scrollbarBgColor: rgba(0, 0, 0, .05);
+  --scrollbarThumbColor: rgba(0, 0, 0, .15);
+  --scrollbarThumbColorSecond: rgba(255, 255, 255, .7);
+  --scrollbarWidth: 16px;
+  --scrollbarBorder: 0 solid var(--scrollbarBgColor);
+  --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 4);
+}
+
+.bar_container {
+  overflow-y: scroll;
+  max-height: 65%;
+  scrollbar-width: 16px;
+  scrollbar-color: rgba(0, 0, 0, .15) rgba(0, 0, 0, .05);
+}
+.bar_container::-webkit-scrollbar {
+  width: var(--scrollbarWidth);
+}
+.bar_container::-webkit-scrollbar-track {
+  background: var(--scrollbarBgColor);
+  border-radius: var(--scrollbarBorderRadius);
+}
+.bar_container::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbarThumbColor);
+  border-radius: var(--scrollbarBorderRadius);
+  border: var(--scrollbarBorder);
+  background-image: linear-gradient(
+    180deg,
+    var(--scrollbarThumbColor) 0%,
+    var(--scrollbarThumbColorSecond) 90%
+  );
 }
 
 #submit_btn{
