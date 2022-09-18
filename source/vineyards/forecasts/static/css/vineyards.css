@@ -58,6 +58,16 @@ a {
   margin-right: auto;
 }
 
+.link {
+  color: black;
+  text-decoration: none;
+  font-family: Corporate A Pro Light;
+}
+
+.link:hover {
+  color: #5A751F;
+}
+
 #submit_btn{
   font-family: Golos;
   font-size: 20pt;
